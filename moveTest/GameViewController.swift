@@ -9,9 +9,13 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import GameplayKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, SCNSceneRendererDelegate {
 
+    var trackingEntity: TrackingEntity?
+    var lastUpdateTime: TimeInterval?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,17 +44,15 @@ class GameViewController: UIViewController {
         ambientLightNode.light!.color = UIColor.darkGray
         scene.rootNode.addChildNode(ambientLightNode)
         
-        // retrieve the ship node
-        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
-        
-        // animate the 3d object
-        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         
         // set the scene to the view
         scnView.scene = scene
+        scnView.isPlaying = true
+        scnView.delegate = self
         
         // allows the user to manipulate the camera
         scnView.allowsCameraControl = true
@@ -64,6 +66,47 @@ class GameViewController: UIViewController {
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
+        
+        doRyanStuff()
+        
+        
+    }
+    
+    func doRyanStuff() {
+        let scnView = self.view as! SCNView
+        let scene = scnView.scene!
+        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
+        let nodeThatWillChase = createNodeThatWillChase()
+        
+        scene.rootNode.addChildNode(nodeThatWillChase)
+        
+        let agentToTrack = GKAgent3D()
+        agentToTrack.position = ship.simdWorldPosition
+        
+        trackingEntity = TrackingEntity(agentToTrack: agentToTrack, thingDoingTheMoving: nodeThatWillChase)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0, execute: {
+            self.trackingEntity!.turnOnTracker()
+        })
+    }
+    
+    func createNodeThatWillChase() -> SCNNode {
+        let geometry = SCNSphere(radius: 10)
+        
+        let node = SCNNode(geometry: geometry)
+        node.position = SCNVector3Make(500, 500, 500)
+        return node
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        if trackingEntity == nil {
+            return
+        }
+        
+        let deltaTime = time - (lastUpdateTime ?? time)
+        trackingEntity?.update(deltaTime: deltaTime)
+        
+        lastUpdateTime = time
     }
     
     @objc

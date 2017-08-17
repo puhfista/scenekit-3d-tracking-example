@@ -13,6 +13,8 @@
 		10D5FDF11F45F2F000C3698D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10D5FDEF1F45F2F000C3698D /* Main.storyboard */; };
 		10D5FDF31F45F2F000C3698D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10D5FDF21F45F2F000C3698D /* Assets.xcassets */; };
 		10D5FDF61F45F2F000C3698D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10D5FDF41F45F2F000C3698D /* LaunchScreen.storyboard */; };
+		10D5FDFE1F45F43A00C3698D /* TrackingEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5FDFD1F45F43A00C3698D /* TrackingEntity.swift */; };
+		10D5FE001F45F47100C3698D /* ComponentThingy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5FDFF1F45F47100C3698D /* ComponentThingy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		10D5FDF21F45F2F000C3698D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10D5FDF51F45F2F000C3698D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10D5FDF71F45F2F000C3698D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10D5FDFD1F45F43A00C3698D /* TrackingEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingEntity.swift; sourceTree = "<group>"; };
+		10D5FDFF1F45F47100C3698D /* ComponentThingy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentThingy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				10D5FDF21F45F2F000C3698D /* Assets.xcassets */,
 				10D5FDF41F45F2F000C3698D /* LaunchScreen.storyboard */,
 				10D5FDF71F45F2F000C3698D /* Info.plist */,
+				10D5FDFD1F45F43A00C3698D /* TrackingEntity.swift */,
+				10D5FDFF1F45F47100C3698D /* ComponentThingy.swift */,
 			);
 			path = moveTest;
 			sourceTree = "<group>";
@@ -139,7 +145,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10D5FDFE1F45F43A00C3698D /* TrackingEntity.swift in Sources */,
 				10D5FDEE1F45F2F000C3698D /* GameViewController.swift in Sources */,
+				10D5FE001F45F47100C3698D /* ComponentThingy.swift in Sources */,
 				10D5FDEA1F45F2F000C3698D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
